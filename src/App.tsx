@@ -1,64 +1,69 @@
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import ReactLenis from "lenis/react";
 import CtaFooter from "./components/CtaFooter";
 import { StickyCard002 } from "./components/StickyCardsPage";
 import KineticManifesto from "./components/KineticManifestoPage";
 
 function App() {
-  useEffect(() => {
-    const audio = new Audio("/Sound.mp3");
-    audio.preload = "auto";
-    let played = false;
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-    const playAudio = () => {
-      if (played) return;
+  useEffect(() => {
+    // Resolve audio URL safely for Vercel deployments and local development
+    const soundSrc = `${import.meta.env.BASE_URL}Sound.mp3`.replace(/\/\//g, "/");
+    const audio = new Audio(soundSrc);
+    audio.preload = "auto";
+    audioRef.current = audio;
+
+    let isAudioStarted = false;
+
+    const startPlayback = () => {
+      if (isAudioStarted) return;
       audio
         .play()
         .then(() => {
-          played = true;
-          removeListeners();
+          isAudioStarted = true;
+          cleanup();
         })
         .catch(() => {
-          // Browser autoplay waiting for interaction
+          // If browser policy blocks autoplay on load, it will retry on the first user interaction
         });
     };
 
-    const handleInteraction = () => {
-      if (!played) {
-        playAudio();
+    const handleGesture = () => {
+      if (!isAudioStarted) {
+        startPlayback();
       }
     };
 
-    const removeListeners = () => {
-      window.removeEventListener("pointerdown", handleInteraction);
-      window.removeEventListener("click", handleInteraction);
-      window.removeEventListener("touchstart", handleInteraction);
-      window.removeEventListener("keydown", handleInteraction);
-      window.removeEventListener("scroll", handleInteraction);
-      window.removeEventListener("wheel", handleInteraction);
+    const cleanup = () => {
+      window.removeEventListener("click", handleGesture);
+      window.removeEventListener("touchstart", handleGesture);
+      window.removeEventListener("touchend", handleGesture);
+      window.removeEventListener("pointerdown", handleGesture);
+      window.removeEventListener("pointerup", handleGesture);
+      window.removeEventListener("keydown", handleGesture);
+      document.removeEventListener("click", handleGesture);
+      document.removeEventListener("touchstart", handleGesture);
     };
 
-    const addListeners = () => {
-      window.addEventListener("pointerdown", handleInteraction, { once: true });
-      window.addEventListener("click", handleInteraction, { once: true });
-      window.addEventListener("touchstart", handleInteraction, { once: true });
-      window.addEventListener("keydown", handleInteraction, { once: true });
-      window.addEventListener("scroll", handleInteraction, { once: true });
-      window.addEventListener("wheel", handleInteraction, { once: true });
-    };
+    // Listen for genuine user gestures (without { once: true } so failed attempts don't drop the listener)
+    window.addEventListener("click", handleGesture, { passive: true });
+    window.addEventListener("touchstart", handleGesture, { passive: true });
+    window.addEventListener("touchend", handleGesture, { passive: true });
+    window.addEventListener("pointerdown", handleGesture, { passive: true });
+    window.addEventListener("pointerup", handleGesture, { passive: true });
+    window.addEventListener("keydown", handleGesture, { passive: true });
+    document.addEventListener("click", handleGesture, { passive: true });
+    document.addEventListener("touchstart", handleGesture, { passive: true });
 
-    // Attempt playback after 2 seconds
+    // Attempt playback automatically after 2 seconds
     const timer = setTimeout(() => {
-      playAudio();
-      addListeners();
+      startPlayback();
     }, 2000);
-
-    addListeners();
 
     return () => {
       clearTimeout(timer);
-      removeListeners();
-      audio.pause();
+      cleanup();
     };
   }, []);
 
