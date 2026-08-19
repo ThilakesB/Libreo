@@ -1,18 +1,16 @@
 <div align="center">
 
-  <img src="./Readme_img.png" alt="Libreo Banner" width="100%" />
+<img src="./Readme_img.png" alt="Libreo Banner" width="100%" />
 
-  <br />
-  <br />
+<br />
+<br />
 
-  # Libreo
+# Libreo
 
-  <p align="center">
-    <strong>We are a student community that gives souls to software.</strong><br />
-    <em>Building meaningful projects with creativity, purpose, and passion.</em>
-  </p>
-
-</div>
+<p align="center">
+  <strong>We are a student community that gives souls to software.</strong><br />
+  <em>Building meaningful projects with creativity, purpose, and passion.</em>
+</p>
 
 ---
 
@@ -24,13 +22,20 @@ Libreo is a collective of passionate student developers, designers, and creators
 
 ### 🌟 What We Value
 
-- **Soulful Craftsmanship**: Designing interfaces and architectures with meticulous attention to detail, motion, and aesthetics.
-- **Student-Driven Innovation**: Empowering students to experiment boldly, learn by building, and push technological boundaries.
-- **Creativity & Passion**: Combining artistic storytelling with state-of-the-art engineering.
-- **Open Collaboration**: Sharing knowledge, open-sourcing our work, and growing together as a community.
+**Soulful Craftsmanship**
+Designing interfaces and architectures with meticulous attention to detail, motion, and aesthetics.
+
+**Student-Driven Innovation**
+Empowering students to experiment boldly, learn by building, and push technological boundaries.
+
+**Creativity & Passion**
+Combining artistic storytelling with state-of-the-art engineering.
+
+**Open Collaboration**
+Sharing knowledge, open-sourcing our work, and growing together as a community.
 
 ---
 
-<div align="center">
-  <sub>Crafted with heart by the <strong>Libreo Community</strong>.</sub>
+<sub>Crafted with heart by the <strong>Libreo Community</strong>.</sub>
+
 </div>
