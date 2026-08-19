@@ -56,13 +56,10 @@ function App() {
     document.addEventListener("click", handleGesture, { passive: true });
     document.addEventListener("touchstart", handleGesture, { passive: true });
 
-    // Attempt playback automatically after 2 seconds
-    const timer = setTimeout(() => {
-      startPlayback();
-    }, 2000);
+    // Attempt playback immediately on load
+    startPlayback();
 
     return () => {
-      clearTimeout(timer);
       cleanup();
     };
   }, []);
