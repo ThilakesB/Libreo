@@ -14,13 +14,13 @@
 
 ---
 
-### ✨ About Libreo
+###  About Libreo
 
 > *"Software isn't just code and pixels — it's an art form, an experience, and an extension of human imagination."*
 
 Libreo is a collective of passionate student developers, designers, and creators who believe in crafting software that breathes with personality, elegance, and purpose. We focus on building high-impact digital experiences, open-source tools, and cinematic web platforms that inspire.
 
-### 🌟 What We Value
+###  What We Value
 
 **Soulful Craftsmanship**
 Designing interfaces and architectures with meticulous attention to detail, motion, and aesthetics.
