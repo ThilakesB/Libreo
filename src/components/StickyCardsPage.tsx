@@ -11,6 +11,9 @@ export interface CardData {
   alt?: string;
   title?: string;
   subtitle?: string;
+  name?: string;
+  objectFit?: string;
+  imgClassName?: string;
 }
 
 export interface StickyCard002Props {
@@ -26,35 +29,50 @@ const defaultCardsData: CardData[] = [
     image: "/Thefounderoflibreo.png",
     alt: "The Founder of Libreo",
     title: "The Founder of Libreo",
+    name: "Thilakeswaran B",
     subtitle: "01 / Leadership",
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?q=80&w=1200&auto=format&fit=crop",
-    alt: "Abstract Fluid 2",
-    title: "Liquid Glass Dynamics",
-    subtitle: "02 / Texture",
+    image: "/member2.jpg",
+    alt: "Sanjai S",
+    title: "Sanjai S",
+    subtitle: "02 / FullStack Developer",
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?q=80&w=1200&auto=format&fit=crop",
+    image: "/member3.jpg",
     alt: "Abstract Fluid 3",
-    title: "Dynamic Lighting",
-    subtitle: "03 / Illumination",
+    title: "Rahul Kumar Chaupal",
+    subtitle: "03 / AIML Engineer",
   },
   {
     id: 4,
-    image: "https://images.unsplash.com/photo-1633167606207-d840b5070fc2?q=80&w=1200&auto=format&fit=crop",
+    image: "/member4.jpg",
     alt: "Abstract Fluid 4",
-    title: "Elegance in Motion",
-    subtitle: "04 / Motion",
+    title: "Sabareeswaran M",
+    subtitle: "04 / AI Engineer",
   },
   {
     id: 5,
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=1200&auto=format&fit=crop",
+    image: "/member5.jpg",
     alt: "Abstract Fluid 5",
-    title: "Architectural Precision",
-    subtitle: "05 / Geometry",
+    title: "Sabareeswaran M",
+    subtitle: "05 / Hardware Engineer",
+  },
+  {
+    id: 6,
+    image: "/member6.jpg",
+    alt: "Santhiya V",
+    title: "Santhiya V",
+    subtitle: "06 / Web Developer",
+  },
+  {
+    id: 7,
+    image: "/member7.jpg",
+    alt: "Praveena B",
+    title: "Praveena B",
+    subtitle: "07 / Java FullStack Developer",
   },
 ];
 
@@ -167,10 +185,10 @@ const StickyCard002 = ({
               <img
                 src={card.image}
                 alt={card.alt || ""}
-                className="h-full w-full object-cover"
+                className={cn("h-full w-full", card.objectFit ?? "object-cover", card.imgClassName)}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
-              {(card.title || card.subtitle) && (
+              {(card.title || card.subtitle || card.name) && (
                 <div className="absolute bottom-6 left-6 right-6 z-10">
                   {card.subtitle && (
                     <p className="text-xs font-body uppercase tracking-wider text-white/60 mb-1">
@@ -181,6 +199,11 @@ const StickyCard002 = ({
                     <h3 className="text-2xl md:text-3xl font-heading italic text-white">
                       {card.title}
                     </h3>
+                  )}
+                  {card.name && (
+                    <p className="text-xl md:text-2xl font-heading italic text-white/90 mt-0.5">
+                      {card.name}
+                    </p>
                   )}
                 </div>
               )}
